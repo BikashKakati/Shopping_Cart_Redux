@@ -1,0 +1,29 @@
+.container{
+     max-width: 100vw;
+     min-height: 100vh;
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: center;
+}
+
+.container .loading::after{
+     content: "Loading.";
+     font-size: 3rem;
+     font-weight: bold;
+     animation: loading-text .8s infinite;
+}
+@keyframes loading-text {
+     0%{
+          content: "Loading.";
+     }
+     25%{
+          content: "Loading..";
+     }
+     50%{
+          content: "Loading...";
+     }
+     75%{
+          content: "Loading....";
+     }
+}
