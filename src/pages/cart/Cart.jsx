@@ -29,13 +29,13 @@ const Cart = () => {
                     <img src={item ? item.image : ""} />
                   </div>
                   <span className="item__title">{item ? item.title.slice(0, 24) : ""}</span>
-                  <span className="itme__price">{item ? item.price : ""} </span>
+                  <span className="itme__price">{item ? item.price.toFixed() : ""} </span>
                   <button onClick={() => { handleRemove(index) }}>Remove</button>
                 </div>
               ))
             }
           </div>
-          <div className="total"><span >Total </span><span>{Math.floor(amount)}</span></div>
+          <div className="total"><span >Total </span><span>{amount}</span></div>
           
           </>
           :

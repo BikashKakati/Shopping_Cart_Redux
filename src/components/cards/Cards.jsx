@@ -24,7 +24,7 @@ const Cards = ({card}) => {
       <div className="details">
         <button onClick={handleAdding}>Add Cart</button>
         <h5>{card ? title : ""}</h5>
-        <span>{card ? "Rs "+price : ""}</span>
+        <span>{card ? "Rs "+price.toFixed() : ""}</span>
         <p>{card ? description.slice(0, 90)+"...." : ""}</p>
       </div>
         

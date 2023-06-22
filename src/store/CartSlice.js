@@ -16,7 +16,7 @@ const CartSlice = createSlice({
         },
         calculateTotal : (state) => {
             state.cartBox.forEach(item =>{
-                state.amount += item.price
+                state.amount += item.price.toFixed;
             });
         }
     },

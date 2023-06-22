@@ -4,17 +4,18 @@ import Cards from '../../components/cards/Cards'
 
 const Home = () => {
   const [cards, setCards] = useState([]);
-
+  const url = "https://fakestoreapi.com/products";
+  
   useEffect(() => {
     fetchApi()
-  }, [])
-
+  }, [url])
+  
   const fetchApi = async () => {
-    const res = await fetch("https://fakestoreapi.com/products")
-    const product = await res.json()
+    const res = await fetch(url);
+    const product = await res.json();
     setCards(product);
-
   }
+
   return (
     <>
       <div className="container">
