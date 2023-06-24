@@ -4,6 +4,7 @@ import Cards from '../../components/cards/Cards'
 
 const Home = () => {
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(false);
   const url = "https://fakestoreapi.com/products";
   
   useEffect(() => {
@@ -11,23 +12,25 @@ const Home = () => {
   }, [url])
   
   const fetchApi = async () => {
+    setLoading(true);
     const res = await fetch(url);
     const product = await res.json();
     setCards(product);
+    setLoading(false);
   }
 
   return (
     <>
       <div className="container">
         {
-          cards.length === 0 ?
+          loading ?
             <div className='loading'></div>
             :
             <>
               {
-                cards.map((card, index) => {
+                cards.map((card) => {
                   return (
-                    <Cards key={index} card={card} />
+                    <Cards key={card.id} card={card} />
                   )
                 })
               }
