@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import './Navbar.css';
 import {useSelector} from 'react-redux';
 
@@ -6,10 +6,10 @@ const Navbar = () => {
   const {cartBox} = useSelector((state) => state.cart);
   return (
     <>
-    <nav>
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/cart">My Cart<span style={cartBox.length === 0 ? {color:"red"} : {color:"white"}}>{cartBox.length}</span></Link></li>
+    <nav className="primary-navbar">
+        <ul className="nav-list">
+            <NavLink to="/" className="nav-links"><li>Home</li></NavLink>
+            <NavLink to="/cart" className="nav-links"><li>My Cart<span style={!!cartBox.length? {color:"white"} : {color:"red"}} className="item-counter">{cartBox.length}</span></li></NavLink>
         </ul>
 
     </nav>
