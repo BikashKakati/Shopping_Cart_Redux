@@ -8,7 +8,7 @@ const Cards = ({card}) => {
   const dispatch = useDispatch()
 
   const handleAdding = () =>{
-    dispatch(add(card));
+    dispatch(add({...card, quantity: 1}));
   }
 
 
@@ -24,7 +24,7 @@ const Cards = ({card}) => {
       <div className="details">
         <button onClick={handleAdding}>Add Cart</button>
         <h5>{card ? title : ""}</h5>
-        <span>{card ? "Rs "+price.toFixed() : ""}</span>
+        <span>{card ? "Rs "+price.toFixed(2) : ""}</span>
         <p>{card ? description.slice(0, 90)+"...." : ""}</p>
       </div>
         

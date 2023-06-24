@@ -1,42 +1,49 @@
 import React, { useEffect } from 'react'
 import './Cart.css'
 import { useSelector, useDispatch } from 'react-redux';
-import {calculateTotal} from '../../store/CartSlice';
 import { remove } from '../../store/CartSlice';
 
 const Cart = () => {
 
-  const {amount,cartBox} = useSelector((state) => state.cart);
+  const { cartBox } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const handleRemove = (itemIndex) => {
     dispatch(remove(itemIndex));
   }
-  useEffect(() =>{
-    dispatch(calculateTotal());
-  },[cartBox]);
+
+  const totalPrice = () => {
+    let total = 0;
+    cartBox.forEach(card => {
+      total += (card.price * card.quantity);
+    })
+    return total.toFixed(2);
+  }
 
   return (
     <div className="cart__container">
       {
-        cartBox.length != 0 ?
-        <>
-          <div className="cart__innerbox">
-            {
-              cartBox.map((item, index) => (
-                <div className="cart__itmes" key={index}>
-                  <div className="item__img">
-                    <img src={item ? item.image : ""} />
+        !!cartBox.length ?
+          <>
+            <div className="cart__innerbox">
+              {
+                cartBox.map((item) => (
+                  <div className="cart__items" key={item.id}>
+                    <div className="item__img">
+                      <img src={item ? item.image : ""} />
+                    </div>
+                    <span className="item__title">{item ? item.title.slice(0, 24) : ""}</span>
+                    <span className="item__price">{item ? `${item.price.toFixed(2)} x ${item.quantity}` : ""} </span>
+                    <button onClick={() => { handleRemove(item.id) }}>Remove</button>
                   </div>
-                  <span className="item__title">{item ? item.title.slice(0, 24) : ""}</span>
-                  <span className="itme__price">{item ? item.price.toFixed() : ""} </span>
-                  <button onClick={() => { handleRemove(index) }}>Remove</button>
-                </div>
-              ))
-            }
-          </div>
-          <div className="total"><span >Total </span><span>{amount}</span></div>
-          
+                ))
+              }
+            </div>
+            <div className="total">
+              <span >Total Price</span>
+              <span>{totalPrice()}</span>
+            </div>
+
           </>
           :
           <h2>Your Cart is Empty</h2>
