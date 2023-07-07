@@ -9,10 +9,29 @@
 .container .filter-box{
      width: 30%;
      background: var(--ori-white);
+     padding: 2rem;
      height: 100vh;
      position: sticky;
      top: 9rem;
     box-shadow: 0 3px 18px rgba(0,0,0,.3);
+}
+.filter-box .filter-heading{
+     font-size: 3rem;
+     font-weight: 200;
+     margin-bottom: 4rem;
+}
+.filter-box .filter-list{
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+}
+.filter-box .filter-list .filters{
+   display: flex;
+   gap: 2rem;
+   font-size: 1.8rem;
+}
+.filter-box .filter-list .filters input{
+     width: 2rem;
 }
 .container .products-box{
      width: 67%;
