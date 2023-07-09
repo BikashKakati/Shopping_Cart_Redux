@@ -1,68 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import './Home.css'
+import React, { useState } from 'react'
+import { useFetch } from '../../hooks/useFetch'
+import { useSelector } from 'react-redux'
+
 import Cards from '../../components/cards/Cards'
+import './Home.css'
+import Spinner from '../../components/spinner/Spinner'
 
 const Home = () => {
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [sortCallback, setSortCallback] = useState(()=>()=>{});
-  const url = "https://fakestoreapi.com/products";
+  const { searchProduct } = useSelector((state) => state.cart);
+  const { data: productsData, loading } = useFetch();
+  const [sortCallback, setSortCallback] = useState(() => () => { });
 
-  useEffect(() => {
-    let subscribe = true;
-    setLoading(true);
-
-    fetchApi(url).then(cardData => {
-      if (subscribe) {
-        setCards(cardData);
-        setLoading(false);
-      }
-    }).catch(err => setLoading(false));
-    return () => { subscribe = false }
-  }, [])
-
-  const fetchApi = async (url) => {
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      return err;
-    }
-  }
 
   return (
     <>
       <div className="container">
         <div className="filter-box">
           <h3 className="filter-heading">Product Filter</h3>
-
-
           <ul className="filter-list">
-            <li className="filters" onClick={()=>setSortCallback(()=>(a,b)=>a.price-b.price)}>
-              <input type="radio" id="ascending" name="filter" value="ascending"/>
-              <label htmlFor="ascending">Ascending</label>
+            <li className="filters" >
+              <input type="radio" id="ascending" name="filter" value="ascending" onChange={() => setSortCallback(() => (a, b) => a.price - b.price)} />
+              <label htmlFor="ascending">Prices(Low to High)</label>
             </li>
-            <li className="filters" onClick={()=>setSortCallback(()=>(a,b)=>b.price-a.price)}>
-              <input type="radio" id="descending" name="filter" value="descending" />
-              <label htmlFor="descending">Descending</label></li>
-            <li className="filters" onClick={()=>setSortCallback(()=>(a,b)=>a.title.localeCompare(b.title))}>
-              <input type="radio" id="atoz" name="filter" value="atoz" />
-              <label htmlFor="atoz">A to Z</label>
+            <li className="filters" >
+              <input type="radio" id="descending" name="filter" value="descending" onChange={() => setSortCallback(() => (a, b) => b.price - a.price)} />
+              <label htmlFor="descending">Prices(High to Low)</label></li>
+            <li className="filters" >
+              <input type="radio" id="atoz" name="filter" value="atoz" onChange={() => setSortCallback(() => (a, b) => a.title.localeCompare(b.title))} />
+              <label htmlFor="atoz">Names(A to Z)</label>
             </li>
-            <li className="filters" onClick={()=>setSortCallback(()=>(a,b)=>b.title.localeCompare(a.title))}>
-              <input type="radio" id="ztoa" name="filter" value="ztoa" />
-              <label htmlFor="ztoa">Z to A</label>
+            <li className="filters" >
+              <input type="radio" id="ztoa" name="filter" value="ztoa" onChange={() => setSortCallback(() => (a, b) => b.title.localeCompare(a.title))} />
+              <label htmlFor="ztoa">Names(Z to A)</label>
             </li>
+            <button className="btn" onClick={() => setSortCallback(() => () => { })}>Clear Filter</button>
           </ul>
-          
+
         </div>
         <div className="products-box">
           {
             loading ?
-              <div className='loading'></div>
+              <Spinner />
               :
-              (cards.sort(sortCallback).map(card => (<Cards key={card.id} card={card} />)))
+              (productsData?.filter(product => product.title.toLowerCase().includes(searchProduct.toLowerCase())).sort(sortCallback)?.map(product => (<Cards key={product.id} card={product} />)))
           }
         </div>
       </div>
