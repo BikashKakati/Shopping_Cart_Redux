@@ -6,7 +6,7 @@ const CartSlice = createSlice({
     name: "cart",
     initialState: {
         cartBox: storageData,
-        amount: 0,
+        searchProduct: "",
     },
 
     reducers: {
@@ -25,10 +25,13 @@ const CartSlice = createSlice({
             state.cartBox = state.cartBox.filter((card) => card.id !== action.payload);
             localStorage.setItem("shoppingCart", JSON.stringify(state.cartBox));
         },
+        searchQuery: (state, action) =>{
+            state.searchProduct = action.payload;
+        }
     },
 
 
 });
 
-export const { add, remove } = CartSlice.actions;
+export const { add, remove, searchQuery } = CartSlice.actions;
 export default CartSlice.reducer;
