@@ -1,4 +1,4 @@
-.card{
+.card {
     position: relative;
     width: 25rem;
     min-height: 35rem;
@@ -6,22 +6,25 @@
     padding: 2rem;
     border-radius: 1rem;
     margin: 2rem;
-    box-shadow: 0 3px 18px rgba(0,0,0,.3);
+    box-shadow: 0 3px 18px rgba(0, 0, 0, .3);
 
 }
-.card .img-box{
+
+.card .img-box {
     height: 15rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.card .img-box img{
+
+.card .img-box img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center center;
 }
-.card .details{
+
+.card .details {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -30,20 +33,24 @@
     flex-direction: column;
     gap: .6rem;
 }
-.card .details p{
+
+.card .details p {
     font-size: 1.2rem;
     line-height: 1.2rem;
     color: var(--soft-black);
 }
-.card .details h5{
+
+.card .details h5 {
     font-size: 1.5rem;
     line-height: 1.5rem;
 }
-.card .details span{
+
+.card .details span {
     font-size: 1.8rem;
     color: var(--ori-red);
 }
-.card .details button{
+
+.card .details .btn {
     display: block;
-    margin:auto;
+    margin: auto;
 }

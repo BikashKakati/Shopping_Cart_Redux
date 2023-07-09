@@ -1,24 +1,33 @@
-.primary-navbar{
+.primary-navbar {
     max-width: 100vw;
-    padding: 0 3rem;
-    background: var(--dark-blue);
+    padding: 1rem 3rem;
+    background: var(--soft-blue);
     position: sticky;
     top: 0;
     left: 0;
     z-index: 10;
 }
-.nav-list{
+
+.nav-list {
     display: flex;
     align-items: center;
+    gap: 2rem;
 }
-.nav-list .nav-links{
+
+.nav-list .nav-links {
     white-space: nowrap;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     font-size: 2rem;
     color: var(--dark-black);
 }
 
-.nav-links .item-counter{
+.nav-list .search-area {
+    padding: 1rem 2rem;
+    width: 35rem;
+    border-radius: 2rem;
+}
+
+.nav-links .item-counter {
     margin-left: 1rem;
     text-align: center;
     padding: .8rem 1.5rem;

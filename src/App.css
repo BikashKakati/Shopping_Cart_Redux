@@ -17,8 +17,8 @@ body{
 
 :root{
    --ori-grey: #eee;
-   --dark-blue: #2077fa;
-   --soft-blue: #58a2df;
+   --dark-blue: #123bf1;
+   --soft-blue: #2077fa;
    --ori-white:#fff;
    --soft-black: #555;
    --dark-black: #333;
@@ -41,11 +41,14 @@ input,textarea{
     outline: none;
     resize: unset;
 }
-button{
+.btn{
     outline: none;
     border: none;
-    background: var(--dark-blue);
+    background: var(--soft-blue);
     padding:1rem 2rem;
     font-size: 1.5rem;
     border-radius: 2rem;
+}
+.btn:active{
+    background: var(--dark-blue);
 }
