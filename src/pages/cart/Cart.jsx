@@ -34,7 +34,7 @@ const Cart = () => {
                     </div>
                     <span className="item__title">{item ? item.title.slice(0, 24) : ""}</span>
                     <span className="item__price">{item ? `${item.price.toFixed(2)} x ${item.quantity}` : ""} </span>
-                    <button onClick={() => { handleRemove(item.id) }}>Remove</button>
+                    <button className="btn" onClick={() => handleRemove(item.id)} >Remove</button>
                   </div>
                 ))
               }
