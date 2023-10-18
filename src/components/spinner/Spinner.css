@@ -19,8 +19,8 @@
 .loading-spinner {
     width: 7rem;
     height: 7rem;
-    border: .8rem solid #f3f3f3;
+    border: .8rem solid var(--ori-grey);
     border-top: .8rem solid var(--dark-blue);
     border-radius: 50%;
-    animation: spinner .8s linear infinite;
+    animation: spinner .6s linear infinite;
 }

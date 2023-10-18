@@ -20,6 +20,9 @@
     font-size: 2rem;
     color: var(--dark-black);
 }
+.nav-links:active{
+    background: var(--dark-blue);
+}
 
 .nav-list .search-area {
     padding: 1rem 2rem;
